@@ -1,0 +1,59 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Register
+
+  //bootStrap cdn &amp; google fonts
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
+  link(rel='stylesheet' href='/css/login.css')
+  
+.container
+  .row.align-items-center.justify-content-center.vh-100
+    .col-md-7
+      img.w-50(src='https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg')
+      h3 Facebook helps you connect and share with the people in your life.
+    .col-md-5.LoginForm
+      form.login-form(method="post")
+        p.errorMessage #{errorMessage}
+
+
+        .mb-3.nameContainer
+          input.form-control.formFName(name="firstName" type='text' placeholder='first name' required='')
+          span.spanContainer 
+          input.form-control.formLName(name="lastName" type='text' placeholder='last name' required='')
+        .mb-3
+            input.form-control(name="email" type='email' placeholder='Email' required='')
+        .mb-3
+            input#password.form-control(name="password" type='password' placeholder='Password' required='')
+        .mb-3
+            input#passwordConf.form-control(type='password' placeholder='Confirm Password' required='')
+        input.btn.btn-primary.btn-lg.btn-block.mt-3(type="submit", value="Register")
+        .text-center.pt-3.pb-3
+            hr
+            a(href='/') already have an account? sign in here.
+          
+      p.pt-3.text-center
+        b Made and developed
+        |  by Yonatan Balassiano
+    
+
+script.
+        var password = document.getElementById("password")
+        var passwordConf = document.getElementById("passwordConf")
+        var formA = document.getElementById("registerForm")
+
+        function isMatch(){
+            if(password.value != passwordConf.value){
+                alert("Passwords dont match, please try again")
+            }
+            else{
+                formA.submit(); 
+            }
+        }    
+
+//js cdn (jQuery &amp; bootstrap)
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
+script(src='https://code.jquery.com/jquery-3.6.0.min.js' integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous')
