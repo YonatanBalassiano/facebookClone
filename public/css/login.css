@@ -1,0 +1,40 @@
+.LoginForm{
+    -webkit-box-shadow: -1px 1px 5px 4px rgba(0,0,0,0.25);
+    -moz-box-shadow: -1px 1px 5px 45px rgba(0,0,0,0.25);
+    box-shadow: -1px 1px 5px 4px rgba(0,0,0,0.25);
+}
+
+.login-form{
+    padding-top: 10px;
+}
+
+.nameContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.spanContainer{
+padding-left: 5px;
+padding-right: 5px;
+}
+.genderContainer{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.radioContainter{
+    padding-left: 10px;
+}
+
+.radioInput{
+padding-left : 10px;
+}
+
+.errorMessage{
+    text-align: center;
+    color : grey;
+
+}

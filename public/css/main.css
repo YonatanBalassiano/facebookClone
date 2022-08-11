@@ -1,0 +1,327 @@
+:root{
+    --green: #1fa2f1;
+    --greenLight: #9BD1F9;
+    --border:1px solid rgb(213,236,240);
+    --spacing: 15px;
+    --grayText: rgb(101,119,134);
+    --grayButtonText: rgba(0,0,0,0.55);
+    --logoSize : 45px;
+}
+
+
+nav{
+    color:coral;
+    background-color: white;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+    
+}
+
+hr{
+    display:block;
+    color: black;
+    width:100%;
+    text-align:center;
+    padding-bottom: 0px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+
+}
+
+button{
+    background-color: transparent;
+    border: none;
+    color: var(--grayButtonText);
+}
+
+button i, button span {
+    pointer-events: none;
+}
+
+.navLeft{
+    display: flex;
+    justify-content: left;
+    align-content: left;
+    flex-direction: column;
+    font-size: 25px;
+    color: black;
+}
+
+.navLeft p{
+    margin: 0;
+    position:absolute;
+    top: 50%;
+    left:30%;
+    transform: translate(-50%, -50%);
+}
+
+.navMain{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.navMain a {
+  float: left;
+  text-align: center;
+  padding: 7px 30px;
+  color: black;
+  text-decoration: none;
+  font-size: 25px;
+  align-items: center;
+}
+
+.navMain a:hover {
+    background-color: #d4edff;
+    border-radius: 20%;
+  }
+
+.navRight{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchButton i{
+    color: black;
+    font-size: 25px;
+}
+
+.searchContainer{
+    border: none;
+}
+
+.logoImageContainer{
+    height: var(--logoSize);
+    width: var(--logoSize);
+}
+
+.logoImageContainer a {
+    height: var(--logoSize);
+    width: var(--logoSize);
+}
+
+.logoImageContainer img {
+    height: var(--logoSize);
+    width: var(--logoSize);
+}
+
+
+.postFormContainer{
+    display: flex;
+    padding: var(--spacing);
+    padding-top:20px;
+    background-color: white;
+    border-radius: 10px;
+
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1), 0 -3px 3px 0 rgba(0,0,0,0.11);
+}
+
+.postContainer{
+    display: flex;
+    padding: var(--spacing);
+    padding-top:20px;
+    padding-bottom: 5px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1), 0 -3px 3px 0 rgba(0,0,0,0.11);
+    flex-direction:column;
+    padding-bottom: 5px;
+}
+.postHeader{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: right;
+    justify-content: middle;
+
+
+}
+
+.postUserInfo{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    text-align: right;
+}
+
+.postUserInfo span:hover{
+    text-decoration: underline;
+
+}
+
+.postContent{
+    text-align: right;
+    padding: 15px;
+    padding-bottom: 0px;
+}
+
+.postFooter{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    padding-bottom: 0px;
+}
+
+.postButtonContainer{
+    flex: 1;
+}
+
+.postButtonContainer button{
+    flex: 1;
+    width: 100%;
+    padding: 5px;
+}
+.postButtonContainer button:hover{
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
+.postButtonContainer button.active {
+    color: var(--green);
+}
+
+
+.userImageContainer{
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.userImageContainer img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.textareaContainer{
+    flex: 1;
+    padding-left: var(--spacing);
+    outline: none;
+}
+
+.textareaContainer textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 19px;
+    outline: none;
+}
+.textareaContainer textarea:hover {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 15px
+}
+
+#submitPostButton{
+    background-color: var(--green);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 7px 15px;
+}
+
+#submitPostButton:disabled{
+    background-color: var(--greenLight)
+}
+
+.firstFooter{
+    display: flex;
+    justify-content: space-between;
+    flex:1;
+
+}
+
+.firstFooterL{
+    display: flex;
+    align-items: center;
+}
+
+.firstFooterR span:hover{
+    text-decoration: underline;
+}
+
+.firstFooterR{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentsContainter{
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.commentMain{
+    padding: 5px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    
+}
+.commentcontent{
+    flex:1;
+    padding-right: 15px;
+    padding-right: 15px;
+    text-align: right;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 15px;
+}
+
+.hrDown{
+    display: none;
+}
+
+.hrDown.active {
+    display: block;
+}
+
+.userImageCommentContainer{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.userImageCommentContainer img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.commentContentContainer{
+    height: 30px;
+    flex:1;
+    padding-right: 7px;
+    padding-right: 7px;
+    text-align: right;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 7px;
+}
+.commentTypeInput{
+    padding-left: 5px;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    height: 30px; 
+   line-height: 30px;
+   outline: none;
+}
+
+.submitCommentButton{
+    background-color:var(--green);
+    border-radius: 10px;
+    margin-right:10px ;
+    color:white
+}
+
+.commentPostContainter{
+    display: none;
+}
+
+.modal .postFormContainer{
+    border:none;
+    padding-top: 15px;
+    box-shadow: none;
+}
