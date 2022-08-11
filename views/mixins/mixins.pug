@@ -1,0 +1,21 @@
+
+mixin modalCreate(userLoggedIn)
+    #shareModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='shareModalLabel' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#shareModalLabel.modal-title Share post
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+                .modal-body
+                    #orginalPostContainer
+                    .postFormContainer
+                        .userImageContainer
+                            img(src=userLoggedIn.profilePic, alt="user's profile picture")
+                        .textareaContainer
+                            textarea#shareTextarea(placeholder="What's happening?")  
+
+                .modal-footer
+                    button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                    button#submitShareButton.btn.btn-primary(type='button' data-dismiss='modal') share
+
