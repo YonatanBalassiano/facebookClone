@@ -26,8 +26,8 @@ app.use(session({
 
 
 //port listening
-app.listen ("3004", function(){
-    console.log("listen on port 3004");
+app.listen ("3005", function(){
+    console.log("listen on port 3005");
 })
 
 //Routes
@@ -63,20 +63,15 @@ app.get("/", function(req, res){
     }
 })
 
-app.get("/test",function(req,res){
-    if(req.session && req.session.user){
-        var payload = {
-            pageTitle: "Home",
-            userLoggedIn:req.session.user,
-            userLoggedInJS: JSON.stringify(req.session.user)
-        }
-    
-        res.render("test",payload);
-        }
-        else{
-            res.redirect("/Login")
-        }
+app.get("/logOut", function(req,res,next){
+
+    if(req.session){
+        req.session.destroy(function(){
+            res.redirect("/login");
+        })
+    }
 })
+
 
 
 
