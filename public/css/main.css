@@ -5,6 +5,7 @@
     --spacing: 15px;
     --grayText: rgb(101,119,134);
     --grayButtonText: rgba(0,0,0,0.55);
+    --logoSize : 45px;
 }
 
 
@@ -22,7 +23,7 @@ hr{
     text-align:center;
     padding-bottom: 0px;
     margin-bottom: 5px;
-    margin-top: 1px;
+    margin-top: 10px;
 
 }
 
@@ -90,6 +91,22 @@ button i, button span {
 .searchContainer{
     border: none;
 }
+
+.logoImageContainer{
+    height: var(--logoSize);
+    width: var(--logoSize);
+}
+
+.logoImageContainer a {
+    height: var(--logoSize);
+    width: var(--logoSize);
+}
+
+.logoImageContainer img {
+    height: var(--logoSize);
+    width: var(--logoSize);
+}
+
 
 .postFormContainer{
     display: flex;
@@ -301,4 +318,10 @@ button i, button span {
 
 .commentPostContainter{
     display: none;
+}
+
+.modal .postFormContainer{
+    border:none;
+    padding-top: 15px;
+    box-shadow: none;
 }

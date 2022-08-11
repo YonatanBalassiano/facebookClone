@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     $.get("/api/posts", function(results){
         outputPosts(results , $(".postsContainer"));
@@ -5,11 +6,13 @@ $(document).ready(function(){
 })
 
 
-$("#postTextarea").keyup(function(event){
+$("#postTextarea , #shareTextarea").keyup(function(event){
     var textbox = $(event.target);
     var value = textbox.val().trim();
 
-    var submitButton = $("#submitPostButton");
+    var isModal = textbox.parents(".modal").length ==1;
+
+    var submitButton = isModal ? $("#submitShareButton") : $("#submitPostButton");
 
     if(submitButton.length == 0 ) return alert("no submit button")
 
@@ -73,6 +76,9 @@ $(document).on("click",".submitCommentButton", function(event){
         success: function(postData){
             document.getElementById(postId).innerHTML+=createCommentHtml(postData);
             // document.getElementById(`firstFooter${postData._id}`).value=`${postdata.commentPosts.length}`
+        },
+        error: function(err){
+            console.log(err)
         }
     })
 })
@@ -92,18 +98,28 @@ $(document).on("click",".commendButton", function(event){
     
 })
 
-$(document).on("click",".shareButton", function(event){
-    var button = $(event.target);
+$("#shareModal").on("show.bs.modal", function(event){
+    var button = $(event.relatedTarget);
     var postId = getPostId(button);
-    
-    
-    var data={ content:"some englidh ehere"}
-    
-    $.post(`/api/posts/${postId}/share`, data, function(postData) {
-        console.log("yes we did it")
-        
+ 
+    $.get(`/api/posts/${postId}`, function(result){
+    addPostToModal(result,$("#orginalPostContainer"))
     })
+
+
+    $(document).on("click","#submitShareButton", function(event){        
+        var data={ content:document.getElementById("shareTextarea").value}
+        
+        $.post(`/api/posts/${postId}/share`, data, function(postData){
+            console.log(postData)
+            $(".postsContainer").prepend(createSharePostHtml(postData))
+        })
     
+
+    })
+    document.getElementById("shareTextarea").value = "";
+
+
 })
 
 function createPostHtml(postData){
@@ -114,35 +130,31 @@ function createPostHtml(postData){
                     <div class=""><button><i class="fa-solid fa-ellipsis"></i></button></div>
                     </div>
                     <div class="postUserInfo"><span> <b>${postData.postedBy.firstName} ${postData.postedBy.lastName}</b></span><span>${timeDifference(new Date(), new Date(postData.createdAt))}</span></div>
-                        <div class="userImageContainer"><img src="/images/profilePic.png" alt="" /></div>
+                        <div class="userImageContainer"><img src="${postData.postedBy.profilePic}" alt="" /></div>
                 </div>
                 <div class="postContent">
                     <p>${postData.content}</p>
                 </div>
                 <div class="postImg">
                 </div>
-                <div class="firstFooter">
-                    <div class="firstFooterR" id="firstFooter${postData._id}"><span></span></div>
-                    <div class="firstFooterL"><span>22</span></div>
-                </div>
                 <hr />
                 <div class="postFooter">
-                    <div class="postButtonContainer"><button class="shareButton"><i class="fa-solid fa-share-from-square"> </i></button>
+                    <div class="postButtonContainer"><button type="button" class="shareButton" data-toggle="modal" data-target="#shareModal"><i class="fa-solid fa-share-from-square"> </i></button>
                     </div>
                     <div class="postButtonContainer"><button class="commendButton"><i class="fa-solid fa-message"></i></button>
                     </div>
                     <div class="postButtonContainer"><button class="likeButton ${likeButtonActiveClass}"><i class="fa-solid fa-thumbs-up"></i><span>${postData.likes.length || ""}</span></button>
                     </div>
                 </div>
-                <hr class="hrDown" id="activeHr"/>
+                <hr class="hrDown" id="activeHr${postData._id}"/>
                 <div class="commentPostContainter" id="commentPostContainter${postData._id}">
                     <hr/>
                     <div class="commentMain">
                     <button class="submitCommentButton" id="submitComment${postData._id}">post</button>
                     <div class="commentContentContainer">
-                            <input id="commentArea${postData._id}" class="commentTypeInput" type='search' placeholder='Search' aria-label='Search'/>
+                            <input id="commentArea${postData._id}" class="commentTypeInput" type='search' placeholder='Comment here' aria-label='Search'/>
                     </div>
-                    <div class="userImageCommentContainer"><img src="/images/profilePic.png" alt="" /></div>
+                    <div class="userImageCommentContainer"><img src="${userLoggedIn.profilePic}" alt="" /></div>
                     </div>
                 </div>
             </div>
@@ -159,7 +171,7 @@ function createCommentHtml(content){
         <span><b>${content.user.firstName} ${content.user.lastName}</b></span>
         <p>${content.content}</p>
     </div>
-    <div class="userImageContainer"><img src="/images/profilePic.png" alt="" /></div>
+    <div class="userImageContainer"><img src="${content.user.profilePic}" alt="" /></div>
     </div>
 </div>`
 }
@@ -217,15 +229,20 @@ function outputPosts(results, container){
             $.get(`/api/posts/${result._id}/comment`, function(comments){
 
                 comments.forEach(function(comment){
-                    console.log(comment)
-                    console.log(result._id)
                     document.getElementById(result._id).innerHTML+=createCommentHtml(comment);
                 })
             })
         }
     });
     
-    if(results.length == 0){container.append("<span>Nothing posted yet</span>")}
+    // if(results.length == 0){container.append("<span>Nothing posted yet</span>")}
+}
+
+function addPostToModal(result, container){
+    container.html("");
+    var html = createPostHtml(result);
+    container.append(html);
+    
 }
 
 function getPostId (element){
@@ -241,7 +258,7 @@ function createSharePostHtml(postData){
                     <div class=""><button><i class="fa-solid fa-ellipsis"></i></button></div>
                     </div>
                     <div class="postUserInfo"><span> <b>${postData.postedBy.firstName} ${postData.postedBy.lastName}</b></span><span>${timeDifference(new Date(), new Date(postData.createdAt))}</span></div>
-                        <div class="userImageContainer"><img src="/images/profilePic.png" alt="" /></div>
+                        <div class="userImageContainer"><img src="${postData.postedBy.profilePic}" alt="" /></div>
                 </div>
                 <div class="postContent">
                     
@@ -254,7 +271,7 @@ function createSharePostHtml(postData){
                             <div class=""><button><i class="fa-solid fa-ellipsis"></i></button></div>
                             </div>
                             <div class="postUserInfo"><span> <b>${postData.orginalPost.postedBy.firstName} ${postData.orginalPost.postedBy.lastName}</b></span><span>${timeDifference(new Date(), new Date(postData.orginalPost.createdAt))}</span></div>
-                                <div class="userImageContainer"><img src="/images/profilePic.png" alt="" /></div>
+                                <div class="userImageContainer"><img src="${postData.orginalPost.postedBy.profilePic}" alt="" /></div>
                         </div>
                         <div class="postContent">
                             <p>${postData.orginalPost.content}</p>
@@ -264,22 +281,13 @@ function createSharePostHtml(postData){
                     </div>
             <!-- end of inside -->
 
-
-
-
-
-
-
                 </div>
                 <div class="postImg">
                 </div>
-                <div class="firstFooter">
-                    <div class="firstFooterR" id="firstFooter${postData._id}"><span></span></div>
-                    <div class="firstFooterL"><span>22</span></div>
-                </div>
+
                 <hr />
                 <div class="postFooter">
-                    <div class="postButtonContainer"><button class="shareButton"><i class="fa-solid fa-share-from-square"> </i></button>
+                    <div class="postButtonContainer"><button type="button" class="shareButton" data-toggle="modal" data-target="#shareModal"><i class="fa-solid fa-share-from-square"> </i></button>
                     </div>
                     <div class="postButtonContainer"><button class="commendButton"><i class="fa-solid fa-message"></i></button>
                     </div>
@@ -292,9 +300,9 @@ function createSharePostHtml(postData){
                     <div class="commentMain">
                     <button class="submitCommentButton" id="submitComment${postData._id}">post</button>
                     <div class="commentContentContainer">
-                            <input id="commentArea${postData._id}" class="commentTypeInput" type='search' placeholder='Search' aria-label='Search'/>
+                            <input id="commentArea${postData._id}" class="commentTypeInput" type='search' placeholder='Comment here' aria-label='Search'/>
                     </div>
-                    <div class="userImageCommentContainer"><img src="/images/profilePic.png" alt="" /></div>
+                    <div class="userImageCommentContainer"><img src="${postData.postedBy.profilePic}" alt="" /></div>
                     </div>
                 </div>
             </div>
