@@ -16,5 +16,10 @@ a self-thought backend & frontend project. Using HTML, pug, CSS, node.js, expres
 3.	Notification of new comments and likes
 4.	Search option to find users and posts
 5.	Live chat between users
+
+## Screenshots
+| | |
+|:-------------------------:|:-------------------------:|
+
 ![Screenshot_3](https://user-images.githubusercontent.com/101994161/184132872-230cff0d-1a90-4f3f-838c-078673d01955.png)
 ![Screenshot_2](https://user-images.githubusercontent.com/101994161/184132879-5dc09447-e3ed-4a76-ada8-d2ce3b3f1972.png)
