@@ -1,18 +1,24 @@
 extends layouts/mainLayout.pug    
 
 block content
-    .mb-3
-    .postFormContainer
-        .userImageContainer
-            img(src=userLoggedIn.profilePic, alt="user's profile picture")
-        
+    +createPost(userLoggedIn)
 
-        .textareaContainer
-           textarea#postTextarea(placeholder="What's happening?")  
-           .buttonsContainer
-                button#submitPostButton(disabled="") post
+    +modalCreate(userLoggedIn)
+    +modalDeletePost(userLoggedIn)
+
     .mb-3
+
+
     .postsContainer#postContainer
+
+block script
+    script(src="/js/home.js")
+
+
+
+
+    
+
     
                 
 

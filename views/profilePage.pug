@@ -1,0 +1,44 @@
+extends layouts/mainLayout.pug   
+
+block style
+    link(rel='stylesheet' href='/css/profile.css')
+
+block content
+    script.   
+      var profileUserId = '!{profileUser._id}';
+
+    .profileHeaderContainter
+        .profileCoverContainer
+            img(src=profileUser.coverPic, alt="profilePic")
+            .profilePicContainer
+                img(src=profileUser.profilePic, alt="profilePic")
+
+        .profileInfoContainer
+            .profileName
+                span
+                    b #{profileUser.firstName} #{profileUser.lastName}
+                span #{profileUser.friends.length || "0"} friends
+            .headerButtons
+                if profileUser._id != userLoggedIn._id
+                    a.profileButton(href=`/messages/${profileUser._id}`)
+                        i.fa-solid.fa-message
+
+                    - if (profileUser.friends.includes(userLoggedIn._id))
+                        +createFriendButton(profileUser,true)
+                    -else
+                        +createFriendButton(profileUser,false)
+                        
+
+    .newPostContainter
+        if profileUser._id == userLoggedIn._id
+            +createPost(userLoggedIn)
+
+
+
+    .mb-3
+
+    .postsContainer#postContainer
+
+
+block script
+    script(src="/js/profile.js")

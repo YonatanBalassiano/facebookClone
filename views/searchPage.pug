@@ -1,0 +1,17 @@
+extends layouts/mainLayout.pug   
+
+block style
+    link(rel='stylesheet' href='/css/main.css')
+
+block content
+
+    .searchBarContainer
+        i.fas.fa-search
+        input#searchBox(type="text", name="searchBox", placeHolder="search for users")
+
+
+    .resultsContainer
+    
+
+block script
+    script(src="/js/search.js")

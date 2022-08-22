@@ -19,3 +19,38 @@ mixin modalCreate(userLoggedIn)
                     button.btn.btn-secondary(type='button' data-dismiss='modal') Close
                     button#submitShareButton.btn.btn-primary(type='button' data-dismiss='modal') share
 
+mixin modalDeletePost(userLoggedIn)
+    #deletePostModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='deletePostModalLabel' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#deletePostModalLabel.modal-title Delete this post?
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+                .modal-body
+                    p You wont be able to undo this action
+
+                .modal-footer
+                    button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                    button#modalDeleteButton.btn.btn-primary(type='button' data-dismiss='modal') Delete
+
+mixin createPost(userLoggedIn)
+    .mb-3
+    .postFormContainer
+        .userImageContainer
+            img(src=userLoggedIn.profilePic, alt="user's profile picture")
+        
+
+        .textareaContainer
+           textarea#postTextarea(placeholder="What's happening?")  
+           .buttonsContainer
+                button#submitPostButton(disabled="") post
+
+mixin createFriendButton(userLoggedIn, isFriends)
+    - text = isFriends ? "Friends" : "Friend request"
+    - buttonClass = isFriends ? "friendButton friends" : "friendButton"
+
+    button(class = buttonClass, data-id=userLoggedIn._id) #{text}
+    
+
+

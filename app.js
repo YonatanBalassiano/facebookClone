@@ -37,12 +37,23 @@ app.use("/login", loginRoute);
 const registerRoute = require("./routes/registerRoute");
 app.use("/register", registerRoute);
 
+const logoutRoute = require("./routes/logoutRoute");
+app.use("/logout", logoutRoute);
+
 const resetRoute = require("./routes/resetRoute");
 app.use("/reset", resetRoute);
+
+const profilePageRoute = require("./routes/profilePageRoute");
+app.use("/profile", profilePageRoute);
+
+const searchRoute = require("./routes/searchRoute");
+app.use("/search", searchRoute);
 
 const postsApiRoutes = require("./routes/api/posts");
 app.use("/api/posts", postsApiRoutes);
 
+const usersApiRoutes = require("./routes/api/users");
+app.use("/api/users", usersApiRoutes);
 
 
 
@@ -63,14 +74,7 @@ app.get("/", function(req, res){
     }
 })
 
-app.get("/logOut", function(req,res,next){
 
-    if(req.session){
-        req.session.destroy(function(){
-            res.redirect("/login");
-        })
-    }
-})
 
 
 
