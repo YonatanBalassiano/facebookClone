@@ -13,8 +13,46 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
-router.get("/",function(req,res,next){
-    Post.find()
+router.get("/", async function(req,res,next){
+
+    var friendsIds = req.session.user.friends;
+    friendsIds.push(req.session.user._id);
+    Post.find({postedBy:{ $in : friendsIds}})
+    .populate("postedBy")
+    .populate({
+            path: 'orginalPost'
+    })
+    .sort({"createdAt": -1})
+
+    .then(async function(results){
+        results = await User.populate(results,{path:"orginalPost.postedBy"});
+                
+        res.status(200).send(results);
+     })
+
+
+    
+    })
+
+    // Post.find({searchObj})
+    // .populate("postedBy")
+    // .populate({
+    //     path: 'orginalPost',
+    //     populate: {
+    //         path: 'postedBy'
+    //     }})
+    // .sort({"createdAt": -1})
+    // .then(async function(results){
+    //     res.status(200).send(results);
+    // })
+    // .catch(error => {
+    //     console.log(error);
+    //     res.sendStatus(400);
+    // })
+// })
+
+router.get("/user/:id",function(req,res,next){
+    Post.find({postedBy: req.params.id})
     .populate("postedBy")
     .populate({
         path: 'orginalPost',
@@ -34,11 +72,6 @@ router.get("/",function(req,res,next){
 router.get("/:id",function(req,res,next){
     Post.findOne({_id: req.params.id})
     .populate("postedBy")
-    // .populate({
-    //     path: 'orginalPost',
-    //     populate: {
-    //         path: 'postedBy'
-    //     }})
     .then(async function(result){
         res.status(200).send(result);
     })
@@ -88,6 +121,31 @@ router.post("/",function(req,res,next){
     })
 })
 
+router.post("/:id/share", async function(req, res){
+    if (!req.body.content) {
+        console.log("share Content param not sent with request");
+        return res.sendStatus(400);
+    }
+    
+    var postData = {
+        content: req.body.content,
+        postedBy: req.session.user,
+        isShared:true,
+        orginalPost: req.params.id
+    }
+
+    //insert the new sharedpost to the database
+    Post.create(postData)
+    .then(async function(newPost){
+        newPost = await User.populate(newPost, { path: "postedBy" });
+        newPost = await User.populate(newPost, {path: 'orginalPost',populate: {path: 'postedBy'}});
+        return res.status(201).send(newPost);
+    })
+    .catch(error => {
+        console.log(error);
+        res.sendStatus(400);
+    })
+})
 
 router.put("/:id/like", async function(req, res, next){
 
@@ -136,30 +194,17 @@ router.put("/:id/comment", async function(req, res){
     })
 })
 
-router.post("/:id/share", async function(req, res){
-    if (!req.body.content) {
-        console.log("Content param not sent with request");
-        return res.sendStatus(400);
-    }
-    
-    var postData = {
-        content: req.body.content,
-        postedBy: req.session.user,
-        isShared:true,
-        orginalPost: req.params.id
-    }
 
-    //insert the new sharedpost to the database
-    Post.create(postData)
-    .then(async function(newPost){
-        newPost = await User.populate(newPost, { path: "postedBy" });
-        newPost = await User.populate(newPost, {path: 'orginalPost',populate: {path: 'postedBy'}});
-        return res.status(201).send(newPost);
+router.delete("/:id", async function(req,res,next){
+    Post.findByIdAndDelete(req.params.id)
+    .then(function(){
+        res.sendStatus(202);
     })
-    .catch(error => {
-        console.log(error);
+    .catch(function(err){
+        console.log(err);
         res.sendStatus(400);
     })
 })
+
 
 module.exports = router;
