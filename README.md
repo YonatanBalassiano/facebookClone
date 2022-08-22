@@ -2,7 +2,7 @@
 a self-thought backend & frontend project. Using HTML, pug, CSS, node.js, express, MongoDB
 
 # Features
-1.	A full registration system – log in, log out, registration, and password recovery (to be added)
+1.	A full registration system – log in, log out, registration
 2.	Users logged in logic such as Session. User etc.
 3.	Maintain 2 collections in a single database, one for users and one for posts with nested schemas
 4.	Posts API that manages all the GET / POST / PUT / DELETE requests
@@ -18,6 +18,7 @@ a self-thought backend & frontend project. Using HTML, pug, CSS, node.js, expres
 2.	upload a new profile and cover image
 3.	Notification of new comments and likes
 4.	Live chat between users
+5.  and password recovery 
 
 <!-- 
 ![Screenshot_3](https://user-images.githubusercontent.com/101994161/184132872-230cff0d-1a90-4f3f-838c-078673d01955.png)
