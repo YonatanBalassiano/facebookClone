@@ -27,9 +27,9 @@ a self-thought backend & frontend project. Using HTML, pug, CSS, node.js, expres
 ![Screenshot_9](https://user-images.githubusercontent.com/101994161/185905689-bd431775-45a2-43ff-af2a-26cf95098636.png)
 # Screenshots![Screenshot_11](https://user-images.githubusercontent.com/![allscrean](https://user-images.githubusercontent.com/101994161/185906558-dd7f0323-4163-4bbf-a327-e111352acc26.png)
 ![share](https://user-images.githubusercontent.com/101994161/185906564-cc1f1b48-4afc-4994-b183-d344c10050f9.png)
-101994161/185905587-7c73f6fe-8524-4b2a-95a2-82bfc0fafbee.png) -->
+101994161/185905587-7c73f6fe-8524-4b2a-95a2-82bfc0fafbee.png) 
 
-| | |![allscrean](https://user-images.githubusercontent.com/101994161/185906615-1b978ec2-d80d-49b4-8c11-433214ede7b1.png)
+| | |![allscrean](https://user-images.githubusercontent.com/101994161/185906615-1b978ec2-d80d-49b4-8c11-433214ede7b1.png) -->
 
 |:-------------------------:|:-------------------------:|
 |<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/184133549-9cf0133f-e3f8-43f0-9b78-e0e4d60c8b6d.png" alt="SreenShot5" >|<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/184136230-621d39d9-53d7-45c0-84f4-677d6edeb456.png" alt="SreenShot6" >
