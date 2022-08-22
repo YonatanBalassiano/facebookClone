@@ -29,8 +29,8 @@ a self-thought backend & frontend project. Using HTML, pug, CSS, node.js, expres
 ![share](https://user-images.githubusercontent.com/101994161/185906564-cc1f1b48-4afc-4994-b183-d344c10050f9.png)
 101994161/185905587-7c73f6fe-8524-4b2a-95a2-82bfc0fafbee.png) 
 ![allscrean](https://user-images.githubusercontent.com/101994161/185906615-1b978ec2-d80d-49b4-8c11-433214ede7b1.png) -->
-| | |
 
+| | |
 |:-------------------------:|:-------------------------:|
 |<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/184133549-9cf0133f-e3f8-43f0-9b78-e0e4d60c8b6d.png" alt="SreenShot5" >|<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/184136230-621d39d9-53d7-45c0-84f4-677d6edeb456.png" alt="SreenShot6" >
 |<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/184133544-de8f713f-5b7e-4c50-9a8b-e556d4d4a71d.png" alt="SreenShot3">|<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/185906564-cc1f1b48-4afc-4994-b183-d344c10050f9.png" alt="SreenShot4" >|
