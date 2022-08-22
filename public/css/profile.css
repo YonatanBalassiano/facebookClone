@@ -1,0 +1,71 @@
+:root{
+    --green: #1fa2f1;
+    --greenLight: #9BD1F9;
+    --border:1px solid rgb(213,236,240);
+    --spacing: 15px;
+    --grayText: rgb(101,119,134);
+    --grayButtonText: rgba(0,0,0,0.55);
+    --logoSize : 45px;
+}
+
+.profileHeaderContainter{
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+
+
+}
+
+.profileCoverContainer{
+    height: 180px;
+    display: flex;
+    justify-content: right;
+    background-color: white;
+
+}
+
+.profileCoverContainer img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.profilePicContainer{
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    top: 110px;
+    margin-right: 15px;
+}
+
+.profilePicContainer img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid white;
+
+}
+
+.profileInfoContainer{
+    padding-top: 10px;
+    margin-right: 155px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    
+}
+
+.profileName{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.profileNameContainer span{
+    font-size: 20px;
+}
+
+
+
+

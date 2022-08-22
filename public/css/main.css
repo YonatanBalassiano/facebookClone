@@ -8,6 +8,9 @@
     --logoSize : 45px;
 }
 
+body{
+    background-color: rgba(240,242,245,255);
+}
 
 nav{
     color:coral;
@@ -35,6 +38,13 @@ button{
 
 button i, button span {
     pointer-events: none;
+}
+
+a{
+    color:inherit;
+}
+a:hover{
+    color:inherit;
 }
 
 .navLeft{
@@ -77,10 +87,10 @@ button i, button span {
     border-radius: 20%;
   }
 
-.navRight{
+.navRight {
+    flex: 1;
+    justify-content: right;
     display: flex;
-    flex-direction: row;
-    align-items: center;
 }
 
 .searchButton i{
@@ -107,15 +117,20 @@ button i, button span {
     width: var(--logoSize);
 }
 
-
 .postFormContainer{
     display: flex;
     padding: var(--spacing);
+    flex-direction: row-reverse;
+    justify-content: right;
     padding-top:20px;
     background-color: white;
     border-radius: 10px;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
 
-    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1), 0 -3px 3px 0 rgba(0,0,0,0.11);
+.buttonsContainer{
+    display: flex;
+    justify-content: right;
 }
 
 .postContainer{
@@ -125,10 +140,11 @@ button i, button span {
     padding-bottom: 5px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1), 0 -3px 3px 0 rgba(0,0,0,0.11);
     flex-direction:column;
     padding-bottom: 5px;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
+
 .postHeader{
     display: flex;
     flex: 1;
@@ -173,6 +189,7 @@ button i, button span {
     width: 100%;
     padding: 5px;
 }
+
 .postButtonContainer button:hover{
     background-color: lightgray;
     border-radius: 10px;
@@ -181,7 +198,6 @@ button i, button span {
 .postButtonContainer button.active {
     color: var(--green);
 }
-
 
 .userImageContainer{
     width: 40px;
@@ -208,9 +224,13 @@ button i, button span {
     resize: none;
     font-size: 19px;
     outline: none;
-}
-.textareaContainer textarea:hover {
     background-color: rgba(0,0,0,0.1);
+    border-radius: 15px;
+    padding-left: 10px;
+}
+
+.textareaContainer textarea:hover {
+    background-color: rgba(0,0,0,0.2);
     border-radius: 15px
 }
 
@@ -261,6 +281,7 @@ button i, button span {
     justify-content: right;
     
 }
+
 .commentcontent{
     flex:1;
     padding-right: 15px;
@@ -278,6 +299,11 @@ button i, button span {
     display: block;
 }
 
+.postHr{
+    display: none;
+    margin-top: 0px;
+}
+
 .userImageCommentContainer{
     width: 30px;
     height: 30px;
@@ -290,6 +316,7 @@ button i, button span {
     border-radius: 50%;
     background-color: #fff;
 }
+
 .commentContentContainer{
     height: 30px;
     flex:1;
@@ -299,6 +326,7 @@ button i, button span {
     background-color: rgba(0,0,0,0.1);
     border-radius: 7px;
 }
+
 .commentTypeInput{
     padding-left: 5px;
     width: 100%;
@@ -316,12 +344,80 @@ button i, button span {
     color:white
 }
 
-.commentPostContainter{
-    display: none;
-}
-
 .modal .postFormContainer{
     border:none;
     padding-top: 15px;
     box-shadow: none;
 }
+
+.profileButton , .friendButton{
+    border: 2px solid var(--green);
+    color: var(--green);
+    font-weight: bold;
+    padding: 3px 15px;
+    border-radius: 60px;
+    margin-left: 15px;
+}
+
+.profileButton:hover ,.friendButton:hover {
+    background-color: var(--greenLight);
+    color: var(--green);
+}
+
+.friendButton.friends{
+    background-color:var(--green);
+    color: white;
+    font-weight: 500;
+
+}
+
+.searchBarContainer{
+    position: relative;
+    color: var(--grayText);
+    padding: 20px 15px;
+}
+
+.searchBarContainer i {
+    position: absolute;
+    top: 28px;
+    left: 25px;
+}
+
+.searchBarContainer #searchBox{
+    height: 35px;
+    width: 100%;
+    padding: 0px 15px 5px 40px;
+    border-radius: 50px;
+    background-color: rgba(0,0,0,0.1);
+    border: none;
+    color:var (--grayText) ;
+    
+}
+
+.userSearchContainer{
+    padding-top: 10px;
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+}
+
+.userSearchData {
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.userSearchInfo{
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.searchFriendButtonContainer{
+    display: flex;
+    margin-top: 7px;
+    height: 35px;
+}
+
