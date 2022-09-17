@@ -1,0 +1,31 @@
+extends layouts/mainLayout.pug   
+
+block style
+
+
+block right
+    .chatResultsContainer
+    
+
+
+
+block content
+    script. 
+        var chatId = '!{chat._id}';
+
+    .chatPageContainer
+        .chatTitleContainer
+            .userImageContainer
+                img(src=otherUser.profilePic, alt="")
+            a(href=`../profile/${otherUser._id}`)  !{otherUser.firstName} !{otherUser.lastName} 
+
+        .mainContentContainer 
+            .chatContainer
+                ul.chatMessages
+                .footer
+                    textarea.inputTextbox(name="messageInput", placeholder="Type a message...")
+                    button.sendMessageButton
+                        i.fas.fa-paper-plane
+
+block script
+    script(src="/js/chatPage.js")
