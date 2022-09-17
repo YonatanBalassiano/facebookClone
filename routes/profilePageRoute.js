@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 router.get("/", function(req, res){
     if(req.session && req.session.user){
-    var payload = {
+        let payload = {
         pageTitle: "Profile",
         userLoggedIn:req.session.user,
         profileUser:req.session.user,
@@ -30,9 +30,9 @@ router.get("/", function(req, res){
 
 router.get("/:id", async function(req, res){
     if(req.session && req.session.user){
-    var userDetails = await User.findOne({_id: req.params.id})
+        let userDetails = await User.findOne({_id: req.params.id})
     .populate()
-    var payload = {
+    let payload = {
         pageTitle: "Profile",
         userLoggedIn:req.session.user,
         profileUser:userDetails,

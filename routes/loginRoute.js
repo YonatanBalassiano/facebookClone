@@ -17,12 +17,11 @@ router.get("/" ,function(req,res){
 })
 
 router.post("/",async function(req,res){
-    var email = req.body.email;
-    var password = req.body.password;
-    //password = await bcrypt.hash(password, 5);
+    let email = req.body.email;
+    let password = req.body.password;
     payload = {errorMessage:""}
     if(email && password){
-        var user = await User.findOne({email:email})
+        let user = await User.findOne({email:email})
         .catch(function(err){
             console.log(err);
             payload.errorMessage = "Something went wrong.";
@@ -30,7 +29,7 @@ router.post("/",async function(req,res){
         }) 
         
         if(user!=null){
-            var result = await bcrypt.compare(password,user.password)
+            let result = await bcrypt.compare(password,user.password)
             if(result==true){
                 req.session.user = user;
                 return res.redirect("/");

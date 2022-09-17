@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 router.get("/", function(req, res){
     if(req.session && req.session.user){
-    var payload = createPayload(req.session.user);
+        let payload = createPayload(req.session.user);
     res.render("searchPage",payload);
     }
     else{

@@ -17,14 +17,14 @@ router.get("/" ,function(req,res){
 })
 
 router.post("/",async function(req,res){
-    var firstName = req.body.firstName.trim();
-    var lastName = req.body.lastName.trim();
-    var email = req.body.email.trim();
-    var password = req.body.password;
-    var payload = req.body;
+    let firstName = req.body.firstName.trim();
+    let lastName = req.body.lastName.trim();
+    let email = req.body.email.trim();
+    let password = req.body.password;
+    let payload = req.body;
 
     if(firstName && lastName && email && password){ // if all values are valid
-        var user = await User.findOne({email: email})
+        let user = await User.findOne({email: email})
         .catch(function(err){
             console.log(err);
             payload.errorMessage = "Something went wrong.";
@@ -34,7 +34,7 @@ router.post("/",async function(req,res){
         if(user == null){ //no user with that email
 
             //hashing password
-            var cryptpassword = await bcrypt.hash(password, 5);
+            let cryptpassword = await bcrypt.hash(password, 5);
             User.create({
                 firstName: firstName,
                 lastName: lastName,
