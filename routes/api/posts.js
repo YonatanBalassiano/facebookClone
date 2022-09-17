@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 router.get("/", async function(req,res,next){
 
-    var friendsIds = req.session.user.friends;
+    let friendsIds = req.session.user.friends;
     friendsIds.push(req.session.user._id);
     Post.find({postedBy:{ $in : friendsIds}})
     .populate("postedBy")
@@ -33,23 +33,6 @@ router.get("/", async function(req,res,next){
 
     
     })
-
-    // Post.find({searchObj})
-    // .populate("postedBy")
-    // .populate({
-    //     path: 'orginalPost',
-    //     populate: {
-    //         path: 'postedBy'
-    //     }})
-    // .sort({"createdAt": -1})
-    // .then(async function(results){
-    //     res.status(200).send(results);
-    // })
-    // .catch(error => {
-    //     console.log(error);
-    //     res.sendStatus(400);
-    // })
-// })
 
 router.get("/user/:id",function(req,res,next){
     Post.find({postedBy: req.params.id})
@@ -104,7 +87,7 @@ router.post("/",function(req,res,next){
         return res.sendStatus(400);
     }
     
-    var postData = {
+    let postData = {
         content: req.body.content,
         postedBy: req.session.user,
         isShared:false
@@ -127,7 +110,7 @@ router.post("/:id/share", async function(req, res){
         return res.sendStatus(400);
     }
     
-    var postData = {
+    let postData = {
         content: req.body.content,
         postedBy: req.session.user,
         isShared:true,
@@ -149,12 +132,12 @@ router.post("/:id/share", async function(req, res){
 
 router.put("/:id/like", async function(req, res, next){
 
-    var postId = req.params.id;
-    var userId = req.session.user._id;
+    let postId = req.params.id;
+    let userId = req.session.user._id;
 
-    var isLiked = req.session.user.likes && req.session.user.likes.includes(postId);
+    let isLiked = req.session.user.likes && req.session.user.likes.includes(postId);
 
-    var option = isLiked ? "$pull" : "$addToSet";
+    let option = isLiked ? "$pull" : "$addToSet";
 
     // Insert user like
     req.session.user = await User.findByIdAndUpdate(userId, { [option]: { likes: postId } }, { new: true})
@@ -164,7 +147,7 @@ router.put("/:id/like", async function(req, res, next){
     })
 
     // Insert post like
-    var post = await Post.findByIdAndUpdate(postId, { [option]: { likes: userId } }, { new: true})
+    let post = await Post.findByIdAndUpdate(postId, { [option]: { likes: userId } }, { new: true})
     .catch(error => {
         console.log(error);
         res.sendStatus(400);
@@ -174,10 +157,10 @@ router.put("/:id/like", async function(req, res, next){
 
 router.put("/:id/comment", async function(req, res){
 
-    var postId = req.params.id;
-    var userId = req.session.user._id;
+    let postId = req.params.id;
+    let userId = req.session.user._id;
 
-    var post = await Post.findByIdAndUpdate(postId, { $push: { comments: {"user": userId , "content":req.body.comment} } }, { new: true})
+    let post = await Post.findByIdAndUpdate(postId, { $push: { comments: {"user": userId , "content":req.body.comment} } }, { new: true})
     .catch(error => {
             console.log(error);
             res.sendStatus(400);

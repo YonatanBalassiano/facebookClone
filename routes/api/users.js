@@ -12,7 +12,7 @@ const session = require('express-session');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.get("/" , async function(req, res, next){
-    var searchObj = req.query;
+    let searchObj = req.query;
     if (req.query.firstName !== undefined || req.query.lastName!== undefined){
         searchObj = {
             $or : [
@@ -33,16 +33,16 @@ router.get("/" , async function(req, res, next){
 
 router.put("/:id/friends", async function(req, res, next){
 
-    var otherUserId = req.params.id;
-    var userId = req.session.user._id;
-    var otherUser = await User.findById(otherUserId)
+    let otherUserId = req.params.id;
+    let userId = req.session.user._id;
+    let otherUser = await User.findById(otherUserId)
 
-    var isFriends = otherUser.friends && otherUser.friends.includes(userId);
+    let isFriends = otherUser.friends && otherUser.friends.includes(userId);
 
-    var option = isFriends ? "$pull" : "$addToSet";
+    let option = isFriends ? "$pull" : "$addToSet";
 
 
-    var otherUser= await User.findByIdAndUpdate(otherUserId, { [option]: {friends : userId} }, { new: true})
+    otherUser= await User.findByIdAndUpdate(otherUserId, { [option]: {friends : userId} }, { new: true})
     .catch(error => {
         console.log(error);
         res.sendStatus(400);
