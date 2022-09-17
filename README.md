@@ -12,12 +12,13 @@ a self-thought backend & frontend project. Using HTML, pug, CSS, node.js, expres
 8.	Profile page - post posts directly from profile page
 9.	Friends' system – see only the posts of your friends
 10.	Search user system for searching after other users, and be able to get friends with them from the search page
+11. Inbox page and chat between 2 users.
 
 # To be added in the next versions
 1.	Friends' system upgarde - requests
 2.	upload a new profile and cover image
 3.	Notification of new comments and likes
-4.	Live chat between users
+4.	Chat upgrade - make it live using Socket.IO
 5.  and password recovery 
 
 <!-- 
@@ -31,7 +32,8 @@ a self-thought backend & frontend project. Using HTML, pug, CSS, node.js, expres
 # Screenshots![Screenshot_11](https://user-images.githubusercontent.com/![allscrean](https://user-images.githubusercontent.com/101994161/185906558-dd7f0323-4163-4bbf-a327-e111352acc26.png)
 ![share](https://user-images.githubusercontent.com/101994161/185906564-cc1f1b48-4afc-4994-b183-d344c10050f9.png)
 101994161/185905587-7c73f6fe-8524-4b2a-95a2-82bfc0fafbee.png) 
-![allscrean](https://user-images.githubusercontent.com/101994161/185906615-1b978ec2-d80d-49b4-8c11-433214ede7b1.png) -->
+![allscrean](https://user-images.gith![Screenshot_12](https://user-images.githubusercontent.com/101994161/190857468-7e01b1f4-7637-429b-93b5-a85ea926e665.png)
+ubusercontent.com/101994161/185906615-1b978ec2-d80d-49b4-8c11-433214ede7b1.png) -->
 
 # Screenshots
 
@@ -41,4 +43,5 @@ a self-thought backend & frontend project. Using HTML, pug, CSS, node.js, expres
 |<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/184133544-de8f713f-5b7e-4c50-9a8b-e556d4d4a71d.png" alt="SreenShot3">|<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/185906564-cc1f1b48-4afc-4994-b183-d344c10050f9.png" alt="SreenShot4" >|
 |<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/185906615-1b978ec2-d80d-49b4-8c11-433214ede7b1.png" alt="SreenShot1" >|<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/185905689-bd431775-45a2-43ff-af2a-26cf95098636.png" alt="SreenShot2" >|
 |<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/185905481-a20b1385-eef4-4df5-ae43-b60c6b3d4dca.png" alt="SreenShot7" >|<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/185905587-7c73f6fe-8524-4b2a-95a2-82bfc0fafbee.png" alt="SreenShot8" >
+|<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/185906564-cc1f1b48-4afc-4994-b183-d344c10050f9.png" alt="SreenShot7" >|<img style="max-width:200px; width:100%"  src="https://user-images.githubusercontent.com/101994161/190857468-7e01b1f4-7637-429b-93b5-a85ea926e665.png" alt="SreenShot8" >
 
