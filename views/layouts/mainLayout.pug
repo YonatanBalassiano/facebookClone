@@ -18,41 +18,42 @@ head
 body
     script. 
         var userLoggedIn = !{userLoggedInJS};
-    nav.navbar
-        .navLeft.col-3.navLeft 
-            p 
-                b hello 
-                | #{userLoggedIn.firstName}
+    .wrapper 
+        nav.navbar
+            .navLeft.col-3.navLeft
+                p 
+                    b hello 
+                    | #{userLoggedIn.firstName}
 
 
-        .navMain.col-6
-            a(href="/logout")
-                i.fa-solid.fa-right-from-bracket
-            a(href="/profile")
-                i.fa-solid.fa-user
-            a(href="/messeages")
-                i.fa-solid.fa-envelope
-            a(href="/store")
-                i.fa-solid.fa-store
-            a(href="/search")
-                i.fa.fa-search
-            a(href="/")
-                i.fa-solid.fa-house
-
-
-        .navRight.col-3
-            
-            .logoImageContainer
+            .navMain.col-6
+                a(href="/logout")
+                    i.fa-solid.fa-right-from-bracket
+                a(href="/profile")
+                    i.fa-solid.fa-user
+                a(href="/messages")
+                    i.fa-solid.fa-envelope
+                a(href="/store")
+                    i.fa-solid.fa-store
+                a(href="/search")
+                    i.fa.fa-search
                 a(href="/")
-                    img(src='/images/facebooklogo.jpg')
+                    i.fa-solid.fa-house
 
-    .row
-        .col-2
-            h1 
-        .mainSectionContainer.col-10.col-md-8
-            block content
-        .d-none.d-md-block.col-md-2
-            h1 
+
+            .navRight.col-3
+                
+                .logoImageContainer
+                    a(href="/")
+                        img(src='/images/facebooklogo.jpg')
+
+        .row
+            .col-2
+                block left
+            .mainSectionContainer.col-10.col-md-8
+                block content
+            .d-none.d-md-block.col-md-2
+                block right
                        
 
 //js cdn (jQuery &amp; bootstrap)
