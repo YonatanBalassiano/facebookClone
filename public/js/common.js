@@ -1,10 +1,10 @@
 $("#postTextarea , #shareTextarea").keyup(function(event){
-    var textbox = $(event.target);
-    var value = textbox.val().trim();
+    let textbox = $(event.target);
+    let value = textbox.val().trim();
 
-    var isModal = textbox.parents(".modal").length ==1;
+    let isModal = textbox.parents(".modal").length ==1;
 
-    var submitButton = isModal ? $("#submitShareButton") : $("#submitPostButton");
+    let submitButton = isModal ? $("#submitShareButton") : $("#submitPostButton");
 
     if(submitButton.length == 0 ) return alert("no submit button")
 
@@ -17,17 +17,17 @@ $("#postTextarea , #shareTextarea").keyup(function(event){
 })
 
 $("#submitPostButton").click(function(){
-    var button = $(event.target);
-    var textbox = $("#postTextarea");
+    let button = $(event.target);
+    let textbox = $("#postTextarea");
 
 
-    var data = {
+    let data = {
         content: textbox.val()
     }
     
     
     $.post("/api/posts", data, postData => {
-        var html = createPostHtml(postData);
+        let html = createPostHtml(postData);
         $(".postsContainer").prepend(html);
         textbox.val("");
         button.prop("disabled", true);
@@ -35,8 +35,8 @@ $("#submitPostButton").click(function(){
 })
 
 $(document).on("click",".likeButton", function(event){
-    var button = $(event.target);
-    var postId = getPostId(button);
+    let button = $(event.target);
+    let postId = getPostId(button);
     if (postId == undefined){return;}
     $.ajax({
         url:`/api/posts/${postId}/like`,
@@ -54,8 +54,8 @@ $(document).on("click",".likeButton", function(event){
 })
 
 $(document).on("click",".submitCommentButton", function(event){
-    var button = $(event.target);
-    var postId = getPostId(button);
+    let button = $(event.target);
+    let postId = getPostId(button);
     if (postId == undefined){return;}
     if(document.getElementById(`commentArea${postId}`).value.trim() == ""){return}
     $.ajax({
@@ -78,12 +78,12 @@ $(document).on("click",".submitCommentButton", function(event){
 })
 
 $(document).on("click",".commendButton", function(event){
-    var button = $(event.target);
-    var postId = getPostId(button);
+    let button = $(event.target);
+    let postId = getPostId(button);
     buttonId = `commentPostContainter${postId}`;
     if (postId == undefined){return;}
 
-    var temp = document.getElementById(buttonId).style.display;
+    let temp = document.getElementById(buttonId).style.display;
     if(temp == "none"){temp = "block"}
     else{temp = "none"}
     document.getElementById(buttonId).style.display = temp;
@@ -93,14 +93,13 @@ $(document).on("click",".commendButton", function(event){
 })
 //friendButton press - get user ID
 $(document).on("click",".friendButton", function(event){
-    var button = $(event.target);
-    var userId = button.data().id;
+    let button = $(event.target);
+    let userId = button.data().id;
 
     $.ajax({
         url:`/api/users/${userId}/friends`,
         type: "PUT",
         success: function(data){
-            console.log("yep")
             
             if (data.friends && data.friends.includes(userId)){
                 button.addClass("friends");
@@ -121,8 +120,8 @@ $(document).on("click",".friendButton", function(event){
 })
 
 $("#shareModal").on("show.bs.modal", function(event){
-    var button = $(event.relatedTarget);
-    var postId = getPostId(button);
+    let button = $(event.relatedTarget);
+    let postId = getPostId(button);
  
     $.get(`/api/posts/${postId}`, function(result){
     addPostToModal(result,$("#orginalPostContainer"))
@@ -130,7 +129,7 @@ $("#shareModal").on("show.bs.modal", function(event){
 
 
     $(document).on("click","#submitShareButton", function(event){        
-        var data={ content:document.getElementById("shareTextarea").value}
+        let data={ content:document.getElementById("shareTextarea").value}
         
         $.post(`/api/posts/${postId}/share`, data, function(postData){
             $(".postsContainer").prepend(createSharePostHtml(postData))
@@ -144,8 +143,8 @@ $("#shareModal").on("show.bs.modal", function(event){
 })
 
 $("#deletePostModal").on("show.bs.modal", function(event){
-    var button = $(event.relatedTarget);
-    var postId = getPostId(button);
+    let button = $(event.relatedTarget);
+    let postId = getPostId(button);
 
     $(document).on("click","#modalDeleteButton", function(event){        
 
@@ -160,9 +159,30 @@ $("#deletePostModal").on("show.bs.modal", function(event){
 
 })
 
+$(document).on("click",".massegeButton", function(event){
+    console.log(userLoggedIn.firstName)
+    console.log(profileUserId)
+
+    $.ajax({
+        url:`/api/chats/${profileUserId}/${userLoggedIn._id}`,
+        type: "get",
+        success: function(chat){
+           if(! chat || !chat._id) console.log("chats didnt found");
+           window.location.href = `/messages/${chat._id}`;
+
+            
+        },
+        error: function(err){
+            console.log(err)
+        }
+    })
+    
+
+})
+
 function createPostHtml(postData){
-    var likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? "active" : "";
-    var deleteButton = "";
+    let likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? "active" : "";
+    let deleteButton = "";
     if (postData.postedBy._id == userLoggedIn._id){
         deleteButton = `<button type="button" class="DeletePostButton" data-toggle="modal" data-target="#deletePostModal"><i class="fa-solid fa-xmark"></i></button>`
     }
@@ -208,8 +228,8 @@ function createPostHtml(postData){
 }
 
 function createSharePostHtml(postData){
-    var likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? "active" : "";
-    var deleteButton = "";
+    let likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? "active" : "";
+    let deleteButton = "";
     if (postData.postedBy._id == userLoggedIn._id){
         deleteButton = `<button type="button" class="DeletePostButton" data-toggle="modal" data-target="#deletePostModal"><i class="fa-solid fa-xmark"></i></button>`
     }
@@ -288,13 +308,13 @@ function createCommentHtml(content){
 
 function timeDifference(current, previous) {
 
-    var msPerMinute = 60 * 1000;
-    var msPerHour = msPerMinute * 60;
-    var msPerDay = msPerHour * 24;
-    var msPerMonth = msPerDay * 30;
-    var msPerYear = msPerDay * 365;
+    let msPerMinute = 60 * 1000;
+    let msPerHour = msPerMinute * 60;
+    let msPerDay = msPerHour * 24;
+    let msPerMonth = msPerDay * 30;
+    let msPerYear = msPerDay * 365;
 
-    var elapsed = current - previous;
+    let elapsed = current - previous;
 
     if (elapsed < msPerMinute) {
          return Math.round(elapsed/1000) + ' seconds ago';   
@@ -325,8 +345,8 @@ function outputPosts(results, container){
     container.html("");
 
     results.forEach(function(result) {
-        var html ="";
-        var index = 0;
+        let html ="";
+        let index = 0;
         
 
         if(result.isShared == true){
@@ -346,20 +366,18 @@ function outputPosts(results, container){
 
         }
     });
-    
-    // if(results.length == 0){container.append("<span>Nothing posted yet</span>")}
 }
 
 function addPostToModal(result, container){
     container.html("");
-    var html = createPostHtml(result);
+    let html = createPostHtml(result);
     container.append(html);
     
 }
 
 function getPostId (element){
-    var isRoot = element.hasClass("#postContainer");
-    var rootElement = isRoot ? element : element.closest(".postContainer").attr('id');    
+    let isRoot = element.hasClass("#postContainer");
+    let rootElement = isRoot ? element : element.closest(".postContainer").attr('id');    
     return rootElement;
 }
 

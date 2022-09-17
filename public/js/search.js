@@ -2,16 +2,18 @@
 var timer;
 $("#searchBox").keydown(async function(event){
     clearTimeout(timer);
-    var textBox = $(event.target);
-    var value = textBox.val();
+    let textBox = $(event.target);
+    let value = textBox.val();
     
     timer = setTimeout(() => {
         value = textBox.val().trim().split(" ");
 
-        if (value.length == 0){
-            $("resultsContainer").html("");
+        if (value[0].length == 0){
+            console.log(value)
+            $(".resultsContainer").html(`<span class="searchError">Type Something</span>`)
         }
         else{
+            console.log(value)
             search(value)
         }
     }, 1000);
@@ -23,27 +25,27 @@ function search(searchTerm){
     if(searchTerm.length == 1){
         searchTerm[1] = searchTerm[0];
     }
-    console.log(searchTerm)
     $.get("/api/users" , {firstName : searchTerm[0], lastName : searchTerm[1] }, function(results){
         $(".resultsContainer").html("")
         results.forEach(element => {  
-            var html = createUserSearchHtml(element)
+            let html = createUserSearchHtml(element)
             $(".resultsContainer").prepend(html)
         });
+        if($(".resultsContainer").html() == "") $(".resultsContainer").html(`<span class="searchError">No Match Found</span>`)
     })
     .catch(err=> console.log(err))
 }
 
 function createUserSearchHtml(user){
 
-    var isFriends = userLoggedIn.friends.includes(user._id) ? true : false
-    var text = isFriends ? "Friends" : "Friend request"
-    var buttonClass = isFriends ? "friendButton friends" : "friendButton"
+    let isFriends = userLoggedIn.friends.includes(user._id) ? true : false
+    let text = isFriends ? "Friends" : "Friend request"
+    let buttonClass = isFriends ? "friendButton friends" : "friendButton"
 
-    var friendButtonHtml = `<div class="searchFriendButtonContainer">
+    let friendButtonHtml = `<div class="searchFriendButtonContainer">
     <button class = "${buttonClass}", data-id="${user._id}">${text}</button>`
     
-    var friendButtonText = user._id==userLoggedIn._id ? "" :  friendButtonHtml
+    let friendButtonText = user._id==userLoggedIn._id ? "" :  friendButtonHtml
 
     return `<div class="userSearchContainer">
                 <div class ="userImageContainer">
